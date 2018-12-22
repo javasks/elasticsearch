@@ -6,7 +6,7 @@ POST: http://localhost:8080/elasticSearch/users/2 --- To post a document in empl
 DELETE: http://localhost:8080/elasticSearch/users/2 --- To delete documents in employee index
 PUT: http://localhost:8080/elasticSearch/users/2 --To update any specific document
 
-To check the list of index:
+To check the index:
 
 localhost:9200/employee
 
