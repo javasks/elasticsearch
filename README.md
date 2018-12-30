@@ -77,7 +77,7 @@ Response
     ]
 }
 ==============================
-To list all index inserver:
+To list all index in server:
 
 GET: localhost:9200/_cat/indices?v
 
@@ -100,7 +100,7 @@ Request Body:
 {   "name":" LFS School", "description":"ICSE Afiliation", "street":"Vijay Chowk"}
 
 ===============================
-Now we have to searc the text "STATE" in multiple index (test and schools)
+Now we have to search the text "STATE" in multiple index (test and schools)
 
 POST: http://localhost:9200/school*,test/_search
 
