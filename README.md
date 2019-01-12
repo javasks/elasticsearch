@@ -1,4 +1,7 @@
 # elasticsearch
+
+Elastic search server will be running on port 9200 by default. Go to Elastic search website and follow the steps to download and setup in your repective environment. 
+
 This is a sample project which will help in connecting local elastic search server. 
 Please find below the rest End point:
 GET: http://localhost:8080/elasticSearch/users/1 -- To get users from employee index
@@ -7,18 +10,23 @@ DELETE: http://localhost:8080/elasticSearch/users/2 --- To delete documents in e
 PUT: http://localhost:8080/elasticSearch/users/2 --To update any specific document
 
 To check the index:
+
 localhost:9200/employee
-employee index is been created by client code
+
+The above employee index is been created by client code, which has been checked in.
+
 ====================================================================
 To create any index ->
 
 PUT :    http://localhost:9200/schools
+
 Response: 
 {
     "acknowledged": true,
     "shards_acknowledged": true,
     "index": "schools"
 }
+
 ===============================================================================
 Create Mapping and Add data:
 
@@ -76,10 +84,12 @@ Response
         }
     ]
 }
+
 ==============================
 To list all index in server:
 
 GET: localhost:9200/_cat/indices?v
+
 
 health status index    uuid                   pri rep docs.count docs.deleted store.size pri.store.size
 yellow open   test     WzZvEFWqSAaTmWGzVi8VAA   3   2          0            0       783b           783b
@@ -88,6 +98,7 @@ yellow open   employee gva67GidTq-uPENuo_Kuhg   5   1          3            0   
 
 
 ================================
+
 Lets create another index with data using bulk api:
 
 POST: http://localhost:9200/test/_bulk
@@ -99,7 +110,9 @@ Request Body:
 {   "index":{ "_index":"test", "_type":"school", "_id":"2"  }}
 {   "name":" LFS School", "description":"ICSE Afiliation", "street":"Vijay Chowk"}
 
+
 ===============================
+
 Now we have to search the text "STATE" in multiple index (test and schools)
 
 POST: http://localhost:9200/school*,test/_search
