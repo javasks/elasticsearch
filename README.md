@@ -1,5 +1,7 @@
 # elasticsearch
 
+Open source, search and analytics engine, written in java built on Apache Lucene. Scale to thousands of node. CRUD monitoring and other
+
 Elastic search server will be running on port 9200 by default. Go to Elastic search website and follow the steps to download and setup in your repective environment. 
 
 This is a sample project which will help in connecting local elastic search server. 
