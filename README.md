@@ -17,7 +17,7 @@ localhost:9200/employee
 
 The above employee index is been created by client code, which has been checked in.
 
-====================================================================
+==============================================================================================================================
 To create any index ->
 
 PUT :    http://localhost:9200/schools
@@ -29,7 +29,7 @@ Response:
     "index": "schools"
 }
 
-===============================================================================
+==============================================================================================================================
 Create Mapping and Add data:
 
 Elasticsearch will auto-create the mapping according to the data provided in request body, we can use its bulk functionality to add more than one JSON object in this index.
@@ -87,7 +87,7 @@ Response
     ]
 }
 
-==============================
+===========================================================================================================================
 To list all index in server:
 
 GET: localhost:9200/_cat/indices?v
@@ -99,7 +99,7 @@ yellow open   schools  cYW3mxlaTQu6wk-cgbvCSA   5   1          2            0   
 yellow open   employee gva67GidTq-uPENuo_Kuhg   5   1          3            0     15.1kb         15.1kb
 
 
-================================
+=============================================================================================================================
 
 Lets create another index with data using bulk api:
 
@@ -113,7 +113,7 @@ Request Body:
 {   "name":" LFS School", "description":"ICSE Afiliation", "street":"Vijay Chowk"}
 
 
-===============================
+============================================================================================================================
 
 Now we have to search the text "STATE" in multiple index (test and schools)
 
@@ -168,5 +168,23 @@ Response:
     }
 }
 
+==============================================================================================================================
 
-                            
+See all index:
+
+localhost:9200/_cat/indices?v
+
+POST:  http://localhost:9200/employee/_search
+
+{
+  "query": {
+    "query_string": {
+      "query": "javasks"
+    }
+  }
+}
+
+Search All documnets in given index:
+GET: http://localhost:9200/employee/_search?pretty=true&q=*:*
+
+
