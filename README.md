@@ -17,7 +17,8 @@ localhost:9200/employee
 
 The above employee index is been created by client code, which has been checked in.
 
-==============================================================================================================================
+======================================================================================
+
 To create any index ->
 
 PUT :    http://localhost:9200/schools
@@ -29,7 +30,8 @@ Response:
     "index": "schools"
 }
 
-==============================================================================================================================
+======================================================================================
+
 Create Mapping and Add data:
 
 Elasticsearch will auto-create the mapping according to the data provided in request body, we can use its bulk functionality to add more than one JSON object in this index.
@@ -87,7 +89,8 @@ Response
     ]
 }
 
-===========================================================================================================================
+======================================================================================
+
 To list all index in server:
 
 GET: localhost:9200/_cat/indices?v
@@ -99,7 +102,7 @@ yellow open   schools  cYW3mxlaTQu6wk-cgbvCSA   5   1          2            0   
 yellow open   employee gva67GidTq-uPENuo_Kuhg   5   1          3            0     15.1kb         15.1kb
 
 
-=============================================================================================================================
+======================================================================================
 
 Lets create another index with data using bulk api:
 
@@ -113,7 +116,7 @@ Request Body:
 {   "name":" LFS School", "description":"ICSE Afiliation", "street":"Vijay Chowk"}
 
 
-============================================================================================================================
+======================================================================================
 
 Now we have to search the text "STATE" in multiple index (test and schools)
 
@@ -168,12 +171,13 @@ Response:
     }
 }
 
-==============================================================================================================================
+======================================================================================
 
 See all index:
+GET: localhost:9200/_cat/indices?v
 
-localhost:9200/_cat/indices?v
-
+======================================================================================
+Search using query_string in given index:
 POST:  http://localhost:9200/employee/_search
 
 {
@@ -184,7 +188,96 @@ POST:  http://localhost:9200/employee/_search
   }
 }
 
+======================================================================================
 Search All documnets in given index:
 GET: http://localhost:9200/employee/_search?pretty=true&q=*:*
 
+======================================================================================
+ Cluster health API:
+ Get: localhost:9200/_cluster/health
+ 
+======================================================================================
+ 
+ Create Index without mapping: 
+ PUT: localhost:9200/movies
+ 
+ {
+	"settings": {
+		"index":{
+			"number_of_shards": 5,
+			"number_of_replicas": 2
+			
+		}
+	}
+}
 
+======================================================================================
+
+Search Using Match ALl:
+POST: http://localhost:9200/employee/_search
+
+{
+  "query": {
+    "match_all": {}
+  }
+}
+
+======================================================================================
+
+Search using match query
+Post: http://localhost:9200/employee/_search
+
+{
+  "query": {
+    "match": {
+      "gender": "male"
+    }
+  }
+}
+
+======================================================================================
+
+Search using match_phrase_prefix
+POST: http://localhost:9200/employee/_search
+
+{
+  "query": {
+    "match_phrase_prefix": {
+      "gender": "male"
+    }
+  }
+}
+
+======================================================================================
+Search using wildcard:
+POST: http://localhost:9200/employee/_search
+
+{
+  "query": {
+    "wildcard": {
+      "gender": "*al*"
+    }
+  }
+}
+
+======================================================================================
+
+Search with multi match query
+POST: http://localhost:9200/employee/_search
+
+{
+  "query": {
+    "multi_match": {
+      "query": "javasks",
+      "fields": [
+        "gitRepo",
+        "gender"
+      ]
+    }
+  }
+}
+
+======================================================================================
+
+Find All mappings:
+GET: http://localhost:9200/_mapping
